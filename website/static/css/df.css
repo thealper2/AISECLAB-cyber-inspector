@@ -1,0 +1,15 @@
+.dataframe-container {
+    max-height: 400px;
+    overflow: auto;
+}
+
+.dataframe {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dataframe td, .dataframe th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+    text-align: left;
+}

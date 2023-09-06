@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+Result
+{% endblock %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pandas DataFrame Görüntüleme</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/df.css') }}">
+</head>
+<body>
+    <h1>{{ file_name }} - Log Analysis Result</h1>
+    <h3 align="center">DATAFRAME</h3>
+    <div class="dataframe-container">
+        {{ df.to_html(classes='dataframe') | safe }}
+    </div>
+    <h1>Statistics</h1>
+    {% for img in image %}
+    <img src="{{ url_for('static', filename='reports/' + folder + '/' + img) }}" alt="{{img}}">
+
+    {% endfor %}
+</body>
+</html>
+{% endblock %}
