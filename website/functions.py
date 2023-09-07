@@ -8,6 +8,7 @@ import nltk
 import string
 import matplotlib.pyplot as plt
 import seaborn as sns
+import urllib
 from wordcloud import WordCloud
 from nltk.tokenize import RegexpTokenizer
 from nltk.stem import SnowballStemmer
@@ -79,8 +80,23 @@ def sql_injection_check(input_string):
 def urllen(url):
     return len(url)
 
-def delimitercount(url):
-    return url.count(";") + url.count("_") + url.count("?") + url.count("=") + url.count("&") + url.count("|")
+def semicolon_count(url):
+    return url.count(";")
+
+def underscore_count(url):
+    return url.count("_")
+
+def questionmark_count(url):
+    return url.count("?")
+
+def equal_count(url):
+    return url.count("=")
+
+def and_count(url):
+    return url.count("&")
+
+def or_count(url):
+    return url.count("|")
 
 def dotcount(url):
     return url.count(".")
@@ -89,13 +105,23 @@ def atcount(url):
     return url.count("@")
 
 def subdircount(url):
-    return url.count("/")
+    parsed_url = urllib.parse.urlparse(url)
+    subdirectory_path = len(parsed_url.path.strip("/").split("/"))
+    return subdirectory_path
 
-def query_count(query):
-    if "=" in query:
-        return len(query.split("=")[1])
+def query_len(url):
+    parsed_url = urllib.parse.urlparse(url)
+    if len(parsed_url.query) > 0:
+        query_params = urllib.parse.parse_qs(parsed_url.query)
+        query_string = "".join(f"{value[0]}" for key, value in query_params.items())
+        return len(query_string)
     else:
         return 0
+    
+def param_count(url):
+    parsed_url = urllib.parse.urlparse(url)
+    query_params = urllib.parse.parse_qs(parsed_url.query)
+    return len(query_params)
 
 def total_digits_in_url(url):
     total_digits = 0
@@ -114,61 +140,84 @@ def total_letter_in_url(url):
     return total_letter
 
 def stem_url(column):
-    words = [stemmer.stem(word) for word in column]
+    words = [stemmer.stem(word) for word in column if len(word) >= 3]
     return " ".join(words)
 
 def total_digits_domain(url):
-    if "/" in url:
-        path = url.split("/")[-1]
-        dom = url.replace(path, "")
-        return total_digits_in_url(dom)
+    parsed_url = urllib.parse.urlparse(url)
+    clean_url = url.replace(parsed_url.query, "")
+    path_components = [component for component in clean_url.split('/') if component]
+    if path_components:
+        until_last_directory = "".join([word for word in path_components[:-1]])
+        return total_digits_in_url(until_last_directory)
+    else:
+        return 0
 
+def total_letter_domain(url):
+    parsed_url = urllib.parse.urlparse(url)
+    clean_url = url.replace(parsed_url.query, "")
+    path_components = [component for component in clean_url.split('/') if component]
+    if path_components:
+        until_last_directory = "".join([word for word in path_components[:-1]])
+        return total_letter_in_url(until_last_directory)
     else:
         return 0
 
 def total_digits_path(url):
-    if "/" in url:
-        path = url.split("/")[-1]
-        return total_digits_in_url(path)
+    parsed_url = urllib.parse.urlparse(url)
+    clean_url = url.replace(parsed_url.query, "")
+    path_components = [component for component in clean_url.split('/') if component]
+    if path_components:
+        last_directory = "".join([word for word in path_components[-1]])
+        return total_digits_in_url(last_directory)
     else:
-        return total_digits_in_url(url)
-
-def total_letter_domain(url):
-    if "/" in url:
-        path = url.split("/")[-1]
-        dom = url.replace(path, "")
-        return total_letter_in_url(dom)
-    else:
-        return 0
+        return total_digits_in_url(clean_url)
 
 def total_letter_path(url):
-    if "/" in url:
-        path = url.split("/")[-1]
-        return total_letter_in_url(path)
+    parsed_url = urllib.parse.urlparse(url)
+    clean_url = url.replace(parsed_url.query, "")
+    path_components = [component for component in clean_url.split('/') if component]
+    if path_components:
+        last_directory = "".join([word for word in path_components[-1]])
+        return total_letter_in_url(last_directory)
     else:
-        return total_letter_in_url(url)
+        return total_letter_in_url(clean_url)
 
-def has_extension(column):
-    if "." in column.split("/")[-1]:
+def has_extension(url):
+    parsed_url = urllib.parse.urlparse(url)
+    query_params = urllib.parse.parse_qs(parsed_url.query)
+    path = parsed_url.path
+    file_extension = os.path.splitext(path)[1]
+    if not query_params or not file_extension:
+        return 0
+    else:
+        return 1
+
+def find_extension(url):
+    parsed_url = urllib.parse.urlparse(url)
+    query_params = urllib.parse.parse_qs(parsed_url.query)
+    path = parsed_url.path
+    file_extension = os.path.splitext(path)[1]
+    if not file_extension:
+        return ""
+    else:
+        return file_extension
+
+def has_parameter(url):
+    parsed_url = urllib.parse.urlparse(url)
+    if len(parsed_url.query) > 0:
         return 1
     else:
         return 0
-
-def find_extension(column):
-    text = column.split("/")[-1]
-    if "." in text:
-        if "?" in text:
-            return text.split("?", 1)[0]
-        else:
-            return text.split(".", 1)[1]
+    
+def find_parameter_name(url):
+    parsed_url = urllib.parse.urlparse(url)
+    if len(parsed_url.query) > 0:
+        query_params = urllib.parse.parse_qs(parsed_url.query)
+        query_string = " ".join(f"{key}" for key, value in query_params.items())    
+        return query_string
     else:
         return ""
-
-def has_parameter(column):
-    if "?" in column.split("/")[-1]:
-        return 1
-    else:
-        return 0
 
 def word_freq(freq_top, LABEL, save_path):
     words = [word for word, _ in freq_top]

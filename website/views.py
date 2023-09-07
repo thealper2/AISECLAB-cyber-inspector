@@ -24,7 +24,7 @@ def home():
             test_df = pd.read_csv(file_path, names=["query"])
             test_df["query"] = test_df["query"].apply(clear_first_char)
             result_df = preprocess(test_df)
-            X = result_df.drop(["query", "url_tokenized", "url_stemmed", "extension"], axis=1)
+            X = result_df.drop(["query", "url_tokenized", "url_stemmed", "extension", "parameters"], axis=1)
             X_scaled = ss.transform(X)
             result = model.predict(X_scaled)
             for i in range(len(result_df)):
@@ -37,10 +37,11 @@ def home():
 
             # EDA
             features = ['is_xss', 'is_lfi', 'is_oci', 'is_sqli', 'url_len',
-                        'delim_count', 'dot_count', 'at_count', 'subdir_count', 'query_len',
-                        'total_digits_url', 'total_letter_url',
-                        'total_digits_domain', 'total_letter_domain', 'total_digits_path',
-                        'total_letter_path', 'has_extension', 'has_parameter']
+                        'semicolon_count', 'underscore_count', 'questionmark_count',
+                        'equal_count', 'and_count', 'or_count', 'dot_count', 'at_count',
+                        'subdir_count', 'query_len', 'param_count', 'total_digits_url',
+                        'total_letter_url', 'total_digits_domain', 'total_letter_domain', 
+                        'total_digits_path', 'total_letter_path', 'has_extension', 'has_parameter']
 
             pie_chart(df=result_df, save_path=save_path + "pie_chart.png")
             

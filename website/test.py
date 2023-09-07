@@ -6,10 +6,11 @@ from nltk.stem import SnowballStemmer
 from website.preprocess import preprocess
 
 columns = ['query', 'is_xss', 'is_lfi', 'is_oci', 'is_sqli', 'url_len',
-       'delim_count', 'dot_count', 'at_count', 'subdir_count', 'query_len',
-       'total_digits_url', 'total_letter_url', 'url_tokenized', 'url_stemmed',
-       'total_digits_domain', 'total_letter_domain', 'total_digits_path',
-       'total_letter_path', 'has_extension', 'extension', 'has_parameter']
+       'semicolon_count', 'underscore_count', 'questionmark_count',
+       'equal_count', 'and_count', 'or_count', 'dot_count', 'at_count',
+       'subdir_count', 'query_len', 'param_count', 'total_digits_url',
+       'total_letter_url', 'url_tokenized', 'url_stemmed', 'total_digits_domain', 'total_letter_domain', 
+       'total_digits_path', 'total_letter_path', 'has_extension', 'extension', 'has_parameter', 'parameters']
 
 test1 = 'hrttz9fj.dll?<script>document.cookie="testtbjy=7334;"</script>' # 1
 test2 = 'index.php?option=com_mailto&tmpl=component&link=aHR0cDovL2FkdmVudHVyZ' # 1
@@ -32,6 +33,8 @@ stemmer = SnowballStemmer("english")
 tokenizer = RegexpTokenizer(r"[A-Za-z]+")
 
 test_df = preprocess(test_df)
-dropped = test_df.drop(["query", "url_tokenized", "url_stemmed", "extension"], axis=1)
+print(test_df.shape)
+test_df.to_csv("website/uploads/test.csv")
+dropped = test_df.drop(["query", "url_tokenized", "url_stemmed", "extension", "parameters"], axis=1)
 dropped_scaled = ss.transform(dropped)
-#print(model.predict(dropped_scaled))
+print(model.predict(dropped_scaled))

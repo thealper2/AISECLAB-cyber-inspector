@@ -4,9 +4,10 @@ import pickle
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
 
 df = pd.read_csv("preprocessed.csv")
-X = df.drop(["query", "label", "url_tokenized", "url_stemmed", "extension"], axis=1)
+X = df.drop(["query", "label", "url_tokenized", "url_stemmed", "extension", "parameters"], axis=1)
 y = df["label"]
 
 ss = StandardScaler()
@@ -23,7 +24,7 @@ pred_test = logreg.predict(X_test)
 train_score = accuracy_score(y_train, pred_train)
 print("[+] Train Score:", train_score)
 
-test_score = accuracy_score(y_tets, pred_test)
+test_score = accuracy_score(y_test, pred_test)
 print("[+] Test Score:", test_score)
 
 pickle.dump(logreg, open("models/logreg.pkl", "wb"))
