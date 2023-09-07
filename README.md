@@ -2,7 +2,7 @@
 ML-Based WAF and Query Analyzer
 
 # Yapılacaklar
-- [ ] Özellik çıkarımı fonksiyonları iyileştirilmeli
+- [X] Özellik çıkarımı fonksiyonları iyileştirilmeli
 - [ ] Tasarım iyileştirilmeli
 - [ ] Daha önceki sorguları veritabanı kaydetmeli
 - [ ] Başka modeller eklenmeli
