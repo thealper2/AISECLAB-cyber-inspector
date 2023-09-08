@@ -18,8 +18,13 @@ Result
     <h1>Statistics</h1>
     {% for img in image %}
     <img src="{{ url_for('static', filename='reports/' + folder + '/' + img) }}" alt="{{img}}">
-
+    <br/>
     {% endfor %}
+
+    <form method="POST" action="{{ url_for('views.download_pdf') }}">
+        <input type="hidden" name="file_name" value="{{ file_name }}">
+        <button type="submit">PDF İndir</button>
+    </form>
 </body>
 </html>
 {% endblock %}
