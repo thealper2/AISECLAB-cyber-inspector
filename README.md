@@ -6,6 +6,6 @@ ML-Based WAF and Query Analyzer
 - [ ] Tasarım iyileştirilmeli
 - [X] Daha önceki sorguları veritabanı kaydetmeli
 - [ ] Başka modeller eklenmeli
-- [ ] Raporu HTML olarak dışarı aktarma
+- [X] Raporu HTML olarak dışarı aktarma
 - [ ] Dışarıdan model ekleme
 - [ ] Veri setini birden fazla model üzerinde çalıştırma
