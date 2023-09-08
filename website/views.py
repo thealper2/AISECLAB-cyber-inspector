@@ -43,7 +43,7 @@ def home():
                 os.makedirs(f"website/static/reports/{uploaded_file.filename[:-4]}")
                 
             save_path = f"website/static/reports/{uploaded_file.filename[:-4]}/"
-            #result_df.to_csv(f"{save_path}{uploaded_file.filename[:-4]}_preprocessed.html", classes="dataframe")
+            result_df.to_csv(f"{save_path}{uploaded_file.filename[:-4]}_preprocessed.csv")
 
             # EDA
             features = ['is_xss', 'is_lfi', 'is_oci', 'is_sqli', 'url_len',
@@ -73,6 +73,14 @@ def delete_query():
             db.session.commit()
 
     return jsonify({})
+
+@views.route("/download_csv/<filename>", methods=["GET"])
+@login_required
+def download_csv(filename):
+    folder_path = os.path.join("static/reports", filename[:-4])
+    csv_file_path = os.path.join(folder_path, f"{filename[:-4]}_preprocessed.csv")
+    return send_file(csv_file_path, as_attachment=True, download_name=f"{filename[:-4]}_preprocessed.csv")
+
 
 def eda(result_df, save_path, features):
     pie_chart(df=result_df, save_path=save_path + "pie_chart.png")

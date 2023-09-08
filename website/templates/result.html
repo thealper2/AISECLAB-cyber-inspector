@@ -21,10 +21,7 @@ Result
     <br/>
     {% endfor %}
 
-    <form method="POST" action="{{ url_for('views.download_pdf') }}">
-        <input type="hidden" name="file_name" value="{{ file_name }}">
-        <button type="submit">PDF İndir</button>
-    </form>
+    <a href="{{ url_for('views.download_csv', filename=file_name)}}" class="btn btn-primary">Download Report</a>
 </body>
 </html>
 {% endblock %}
