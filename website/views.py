@@ -6,6 +6,8 @@ from website.preprocess import preprocess
 from website.functions import *
 from flask_login import login_required, current_user
 from flask import Blueprint, render_template, request
+from .models import Query
+from . import db
 
 views = Blueprint("views", __name__)
 
@@ -29,6 +31,11 @@ def home():
             result = model.predict(X_scaled)
             for i in range(len(result_df)):
                 result_df.loc[i, "label"] = result[i]
+                query = result_df.loc[i, "query"]
+                label = result_df.loc[i, "label"]
+                new_query = Query(query=query, label=label, user_id=current_user.id)
+                db.session.add(new_query)
+                db.session.commit()
 
             if not os.path.isdir(f"website/static/reports/{uploaded_file.filename[:-4]}"):
                 os.makedirs(f"website/static/reports/{uploaded_file.filename[:-4]}")

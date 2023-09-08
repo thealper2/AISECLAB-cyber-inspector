@@ -8,4 +8,23 @@ Home
     <input type="file" name="file">
     <input type="submit" value="Upload and Analyze">
 </form>
+<br/>
+<table class="table table-bordered">
+    <tr>
+        <th>QUERY</th>
+        <th>LABEL</th>
+        <th>REMOVE</th>
+    </tr>
+    {% for q in user.queries %}
+    <tr>
+        <td>{{ q.query }}</td>
+        <td>{{ q.label }}</td>
+        <td>
+            <button type="button" class="close" onClick="">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </td>
+        {% endfor %}
+    </tr>
+</table>
 {% endblock %}

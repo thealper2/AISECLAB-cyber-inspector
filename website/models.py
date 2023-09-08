@@ -4,5 +4,14 @@ from sqlalchemy.sql import func
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(30), unique=True)
+    email = db.Column(db.String(150), unique=True)
+    username = db.Column(db.String(30))
     password = db.Column(db.String(30))
+    queries = db.relationship("Query")
+
+class Query(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    query = db.Column(db.String(500), unique=False)
+    label = db.Column(db.String(10))
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
