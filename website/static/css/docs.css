@@ -1,0 +1,24 @@
+.sidebar {
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    overflow-y: auto;
+}
+
+.content {
+    margin-left: 250px;
+    padding: 20px;
+}
+
+#logo {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+#brand {
+    padding-top: 25px;
+    margin-left: 10px;
+    font-size: 25px;
+}
