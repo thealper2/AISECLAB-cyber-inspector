@@ -223,11 +223,11 @@ def word_freq(freq_top, LABEL, save_path):
     words = [word for word, _ in freq_top]
     counts = [count for _, count in freq_top]
 
-    plt.figure(figsize=(20, 5))
+    plt.figure()
     plt.bar(words, counts)
     plt.title(LABEL)
-    plt.ylabel("Frequency")
-    plt.xlabel("Words")
+    plt.ylabel("Words")
+    plt.xlabel("Frequency")
     plt.savefig(save_path)
 
 def print_wordcloud(dict_top, LABEL, save_path):
@@ -236,8 +236,8 @@ def print_wordcloud(dict_top, LABEL, save_path):
 
     plt.figure()
     plt.imshow(wordcloud)
-    plt.axis("off")
-    plt.tight_layout(pad=0)
+    #plt.axis("off")
+    #plt.tight_layout(pad=0)
     plt.title(LABEL)
     plt.savefig(save_path)
 
