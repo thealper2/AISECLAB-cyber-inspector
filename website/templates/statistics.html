@@ -1,0 +1,592 @@
+{% extends "base.html" %}
+{% block title %}
+Statistics | ML-IDS
+{% endblock %}
+{% block content %}
+<h1>{{ user.username }}'s Statistics</h1>
+{% if selected %}
+<main class="col-md-10">
+    <div class="row">
+        <!-- and count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">And Count - Benign</h5>
+                    <p class="card-text">Total number of "&" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_and_count.png') }}" width="300" height="500" alt="And Count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">And Count - Malicious</h5>
+                    <p class="card-text">Total number of "&" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_and_count.png') }}" width="300" height="500" alt="And Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- at count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">At Count - Benign</h5>
+                    <p class="card-text">Total number of "@" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_at_count.png') }}" width="300" height="500" alt="At Count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">At Count - Malicious</h5>
+                    <p class="card-text">Total number of "@" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_at_count.png') }}" width="300" height="500" alt="At Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- dot count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Dot Count - Benign</h5>
+                    <p class="card-text">Total number of "." signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_dot_count.png') }}" width="300" height="500" alt="Dot count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Dot Count - Malicious</h5>
+                    <p class="card-text">Total number of "." signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_dot_count.png') }}" width="300" height="500" alt="Dot Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- equal count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Equal Count - Benign</h5>
+                    <p class="card-text">Total number of "=" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_equal_count.png') }}" width="300" height="500" alt="Equal Count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Equal Count - Malicious<0/h5>
+                    <p class="card-text">Total number of "=" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_equal_count.png') }}" width="300" height="500" alt="Equal Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- has extension -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Has Extension - Benign</h5>
+                    <p class="card-text">extensions</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_has_extension.png') }}" width="300" height="500" alt="Has Extension - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Has Extension - Malicious</h5>
+                    <p class="card-text">extensions</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_has_extension.png') }}" width="300" height="500" alt="Has Extension - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- has parameter -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Has Parameter - Benign</h5>
+                    <p class="card-text">params</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_has_parameter.png') }}" width="300" height="500" alt="Has Parameter - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Has Parameter - Malicious</h5>
+                    <p class="card-text">params</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_has_parameter.png') }}" width="300" height="500" alt="Has Parameter - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- is lfi -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">LFI Pattern - Benign</h5>
+                    <p class="card-text">Is contains LFI pattern</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_is_lfi.png') }}" width="300" height="500" alt="Is contains LFI pattern - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">LFI Pattern - Malicious</h5>
+                    <p class="card-text">Is contains LFI pattern</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_is_lfi.png') }}" width="300" height="500" alt="Is contains LFI pattern - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- is oci -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">OSi Pattern - Benign</h5>
+                    <p class="card-text">Is contains OSi pattern</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_is_oci.png') }}" width="300" height="500" alt="Is contains OSi pattern - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">OSi Pattern - Malicious</h5>
+                    <p class="card-text">Is contains OSi pattern</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_is_oci.png') }}" width="300" height="500" alt="Is contains OSi pattern - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- is sqli -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">SQLi Pattern - Benign</h5>
+                    <p class="card-text">Is contains SQLi pattern</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_is_sqli.png') }}" width="300" height="500" alt="Is contains SQLi pattern - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">SQLi Pattern - Malicious</h5>
+                    <p class="card-text">Is contains SQLi pattern</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_is_sqli.png') }}" width="300" height="500" alt="Is contains SQLi pattern - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- is xss -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">XSS Pattern - Benign</h5>
+                    <p class="card-text">Is contains XSS pattern</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_is_xss.png') }}" width="300" height="500" alt="Is contains XSS pattern - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">XSS Pattern - Malicious</h5>
+                    <p class="card-text">Is contains XSS pattern</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_is_xss.png') }}" width="300" height="500" alt="Is contains XSS pattern - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- or count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Or Count - Benign</h5>
+                    <p class="card-text">Total number of "|" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_or_count.png') }}" width="300" height="500" alt="Or Count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Or Count - Malicious</h5>
+                    <p class="card-text">Total number of "|" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_or_count.png') }}" width="300" height="500" alt="Or Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- param count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Parameter Count - Benign</h5>
+                    <p class="card-text">Total number of parameters in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_param_count.png') }}" width="300" height="500" alt="Parameter Count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Parameter Count - Malicious</h5>
+                    <p class="card-text">Total number of parameters in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_param_count.png') }}" width="300" height="500" alt="Parameter Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- query len -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Query Length - Benign</h5>
+                    <p class="card-text">length</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_query_len.png') }}" width="300" height="500" alt="Query Length - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Query Length - Malicious</h5>
+                    <p class="card-text">length</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_query_len.png') }}" width="300" height="500" alt="Query Length - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- questionmark count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Question Mark Count - Benign</h5>
+                    <p class="card-text">Total number of "?" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_questionmark_count.png') }}" width="300" height="500" alt="Question Mark Count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Question Mark Count - Malicious</h5>
+                    <p class="card-text">Total number of "?" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_questionmark_count.png') }}" width="300" height="500" alt="Question Mark Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- semicolon count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Semicolon Count - Benign</h5>
+                    <p class="card-text">Total number of ";" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_semicolon_count.png') }}" width="300" height="500" alt="Semicolon Count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Semicolon Count - Malicious</h5>
+                    <p class="card-text">Total number of ";" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_semicolon_count.png') }}" width="300" height="500" alt="Semicolon Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- subdir count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Subdir Count - Benign</h5>
+                    <p class="card-text">Total number of sub directories in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_subdir_count.png') }}" width="300" height="500" alt="Subdir Count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Subdir Count - Malicious</h5>
+                    <p class="card-text">Total number of sub directories in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_subdir_count.png') }}" width="300" height="500" alt="Subdir Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- top extensions -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Top 5 Extensions - Benign</h5>
+                    <p class="card-text">extensions</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_top_extensions.png') }}" width="300" height="500" alt="Top 5 Extensions - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Top 5 Extension - Malicious</h5>
+                    <p class="card-text">extensions</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_top_extensions.png') }}" width="300" height="500" alt="Top 5 Extensions - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- top words -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Top 5 Words - Benign</h5>
+                    <p class="card-text">words</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_top_words.png') }}" width="300" height="500" alt="Top 5 Words - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Top 5 Words - Malicious</h5>
+                    <p class="card-text">words</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_top_words.png') }}" width="300" height="500" alt="Top 5 Words - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- total digits domain -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Digits Domain - Benign</h5>
+                    <p class="card-text">Total number of digits in Domain</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_total_digits_domain.png') }}" width="300" height="500" alt="Total Digits Domain - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Digits Domain - Malicious</h5>
+                    <p class="card-text">Total number of digits in Domain</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_total_digits_domain.png') }}" width="300" height="500" alt="Total Digits Domain - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- total digits path -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Digits Path - Benign</h5>
+                    <p class="card-text">Total number of digits in Path</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_total_digits_path.png') }}" width="300" height="500" alt="Total Digits Path - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Digits Path - Malicious</h5>
+                    <p class="card-text">Total number of digits in Path</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_total_digits_path.png') }}" width="300" height="500" alt="Total Digits Path - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- total digits url -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Digits URL - Benign</h5>
+                    <p class="card-text">Total number of digits in URL</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_total_digits_url.png') }}" width="300" height="500" alt="Total Digits URL - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Digits URL - Malicious</h5>
+                    <p class="card-text">Total number of digits in URL</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_total_digits_url.png') }}" width="300" height="500" alt="Total Digits URL - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- total letter domain -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Letter Domain - Benign</h5>
+                    <p class="card-text">Total number of letters in Domain</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_total_letter_domain.png') }}" width="300" height="500" alt="Total Letter Domain - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Letter Domain - Malicious</h5>
+                    <p class="card-text">Total number of letters in Domain</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_total_letter_domain.png') }}" width="300" height="500" alt="Total Letter Domain - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- total letter path -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Letter Path - Benign</h5>
+                    <p class="card-text">Total number of letters in Path</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_total_letter_path.png') }}" width="300" height="500" alt="Total Letter Path - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Letter Path - Malicious</h5>
+                    <p class="card-text">Total number of letters in Path</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_total_letter_path.png') }}" width="300" height="500" alt="Total Letter Path - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- total letter url -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Letter URL - Benign</h5>
+                    <p class="card-text">Total number of letters in URL</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_total_letter_url.png') }}" width="300" height="500" alt="Total Letter URL - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Letter URL - Malicious</h5>
+                    <p class="card-text">Total number of letters in URL</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_total_letter_url.png') }}" width="300" height="500" alt="Total Letter URL - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- underscore count -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Underscore Count - Benign</h5>
+                    <p class="card-text">Total number of "_" signs in the query.</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_underscore_count.png') }}" width="300" height="500" alt="Underscore Count - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Underscore Count - Malicious</h5>
+                    <p class="card-text">Total number of "_" signs in the query.1</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_underscore_count.png') }}" width="300" height="500" alt="Underscore Count - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- url len -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">URL Length - Benign</h5>
+                    <p class="card-text">length</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_url_len.png') }}" width="300" height="500" alt="URL Length - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">URL Length - Malicious</h5>
+                    <p class="card-text">length</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_url_len.png') }}" width="300" height="500" alt="URL Length - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+
+        <!-- wc -->
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Top 5 Words - Benign</h5>
+                    <p class="card-text">words</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '0_wc.png') }}" width="300" height="500" alt="Top 5 Words - Benign" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Top 5 Words - Malicious</h5>
+                    <p class="card-text">words</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/' + folder + '/' + '1_wc.png') }}" width="300" height="500" alt="Top 5 Words - Malicious" class="card-img-bottom">
+            </div>
+        </div>
+    </div>
+</main>
+{% else %}
+<form method="POST">
+    <label for="folder">Choose Report from History:</label>
+    <select id="folder" name="folder">
+        {% for folder in folders %}
+            <option value="{{ folder }}"
+                {% if folder == selected_folder %} selected {% endif %}>
+                {{ folder }}
+            </option>
+        {% endfor %}
+    </select>
+    <input type="submit" value="Choose" />
+</form>
+{% endif %}
+{% endblock %}

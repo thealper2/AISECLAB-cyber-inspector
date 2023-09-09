@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}
+Dashboard | ML-IDS
+{% endblock %}
+{% block content %}
+<h1>{{ user.username }}'s Dashboard</h1>
+<br/>
+<main class="col-md-10">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Query per Category</h5>
+                    <p class="card-text">Bar Plot</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/db_total.png') }}" width="300" height="500" alt="{{img}}" class="card-img-bottom">
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h5 class="card-title">Total Query per Category</h5>
+                    <p class="card-text">Pie Plot</p>
+                </div>
+                <img src="{{ url_for('static', filename='reports/db_total2.png') }}" width="300" height="500" alt="{{img}}" class="card-img-bottom">
+            </div>
+        </div>
+    </div>
+</main>
+<table class="table table-bordered" id="queries">
+    <tr>
+        <th>Date</th>
+        <th>QUERY</th>
+        <th>LABEL</th>
+    </tr>
+    {% for q in user.queries %}
+    <tr>
+        <td>{{ q.date }}</td>
+        <td>{{ q.query_text }}</td>
+        <td>{{ q.label }}</td>
+        {% endfor %}
+    </tr>
+</table>
+{% endblock %}

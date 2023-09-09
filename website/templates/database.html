@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}
+Dashboard | ML-IDS
+{% endblock %}
+{% block content %}
+<h1>{{ user.username }}'s Database</h1>
+<table class="table table-bordered" id="queries">
+    <tr>
+        <th>Date</th>
+        <th>QUERY</th>
+        <th>LABEL</th>
+        <th>REMOVE</th>
+    </tr>
+    {% for q in user.queries %}
+    <tr>
+        <td>{{ q.date }}</td>
+        <td>{{ q.query_text }}</td>
+        <td>{{ q.label }}</td>
+        <td>
+            <button type="button" class="btn btn-warning" onClick="deleteQuery({{ q.id }})">
+                Remove <span aria-hidden="true">&times;</span>
+            </button>
+        </td>
+        {% endfor %}
+    </tr>
+</table>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block title %}
+Profile | ML-IDS
+{% endblock %}
+{% block content %}
+<h1>{{ user.username}}'s Profile Page</h1>
+
+<form method="POST">
+    <div class="form-group">
+        <label for="id">ID:</label>
+        <input class="form-control" type="text" id="id" name="id" value="{{ user.id }}" disabled><br>
+
+        <label for="username">Username:</label>
+        <input class="form-control" type="text" id="username" name="username" value="{{ user.username }}" required><br>
+
+        <label for="email">Email:</label>
+        <input class="form-control" type="email" id="email" name="email" value="{{ user.email }}" required><br>
+
+        <label for="password">(SHA-256) Password:</label>
+        <input class="form-control" type="password" id="password" name="password" value="{{ user.password }}" disabled><br>
+
+        <input class="btn btn-secondary" type="submit" value="Update">
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %} Documentation | ML-IDS {% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+        integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/docs.css' )}}" />
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="container-fluid">
+        <div class="row">
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block bg-light">
+                <div class="position-fixed">
+                    <img src="{{ url_for('static', filename='logo.png' )}}" width="45" height="45" id="logo">
+                    <span id="brand">ML-IDS</span>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link active" href="#start">
+                                Start
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#news">
+                                News
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#installation">
+                                Installation
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#interface">
+                                Interface
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#update">
+                                Update
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#report">
+                                Report
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#risks">
+                                Risks
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#directories">
+                                Directories
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+        <!-- Start -->
+        <div class="container-fluid content" id="start">
+            <h1 class="mt-4"><i class="fa fa-hashtag"></i> START</h1>
+            <p>Follow instroductions.</p>
+        </div>
+
+        <!-- News -->
+        <div class="container-fluid content" id="news">
+            <h1 class="mt-4"><i class="fa fa-rss"></i> NEWS</h1>
+            <p>...</p>
+        </div>
+
+        <!-- Installation -->
+        <div class="container-fluid content" id="installation">
+            <h1 class="mt-4"><i class="fa fa-cog"></i> INSTALLATION</h1>
+            <p>
+                <code>
+                    git clone https://github.com/thealper2/AISECLAB-cyber-inspector <br/>
+                    cd AISECLAB-cyber-inspector <br/>
+                    pip3 install -r requirements.txt <br/>
+                    python3 main.py <br/>
+                </code>
+            </p>
+        </div>
+
+        <!-- Interface -->
+        <div class="container-fluid content" id="interface">
+            <h1 class="mt-4"><i class="fa fa-sitemap"></i> INTERFACE</h1>
+            <p><em>Dashboard:</em> Default page.</p>
+            <p><em>Database:</em> Your queries.</p>
+            <p><em>Upload:</em> Upload and analyse log file.</p>
+            <p><em>Report:</em> Download analysed log report.</p>
+            <p><em>Statistics:</em> Graphs page.</p>
+            <p><em>Profile:</em> Your profile.</p>
+        </div>
+
+        <!-- Update -->
+        <div class="container-fluid content" id="update">
+            <h1 class="mt-4"><i class="fa fa-upload"></i> UPDATE</h1>
+            <p>...</p>
+        </div>
+
+        <!-- Report -->
+        <div class="container-fluid content" id="report">
+            <h1 class="mt-4"><i class="fa fa-inbox"></i> REPORT</h1>
+            <p>...</p>
+        </div>
+
+        <!-- Risks -->
+        <div class="container-fluid content" id="risks">
+            <h1 class="mt-4"><i class="fa fa-id-card"></i> RISKS</h1>
+            <p>...</p>
+        </div>
+
+        <!-- Directories -->
+        <div class="container-fluid content" id="directories">
+            <h1 class="mt-4"><i class="fa fa-folder-open"></i> DIRECTORIES</h1>
+            <p>
+                <em>Templates:</em> HTML files.
+            </p>
+            <p>
+                <em>Static:</em> Static files. (css, js, png...)
+            </p>
+            <p>
+                <em>Notebook:</em> Jupyter Notebooks.
+            </p>
+            <p>
+                <em>Masks:</em> WordCloud masks.
+            </p>
+            <p>
+                <em>Uploads:</em> Uploaded files.
+            </p>
+        </div>
+    </main>
+
+    <!-- Bootstrap JS ve jQuery -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
