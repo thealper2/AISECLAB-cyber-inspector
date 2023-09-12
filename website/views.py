@@ -60,7 +60,7 @@ def upload():
             uploaded_file.save(file_path)
 
             model = pickle.load(open("website/models/logreg.pkl", "rb"))
-            ss = pickle.load(open("website/models/logreg_ss.pkl", "rb"))
+            ss = pickle.load(open("website/models/ss.pkl", "rb"))
             
             test_df = pd.read_csv(file_path, names=["query"])
             test_df = test_df.head(10)
