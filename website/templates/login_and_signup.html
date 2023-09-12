@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Login or Sign-up</title>
-    <link rel="stylesheet" type="text/css" href="login.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}" />
 <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -11,17 +11,18 @@
         <div class="signup">
             <form>
                 <label for="chk" aria-hidden="true">Sign Up</label>
-                <input type="text" name="txt" placeholder="User Name" required="">
-                <input type="email" name="email" placeholder="E-Mail" required="">
-                <input type="password" name="pswd" placeholder="Password" required="">
+                <input type="email" id="email" name="email" placeholder="E-Mail", required="true">
+                <input type="text" id="username" name="username" placeholder="User Name" required="true">
+                <input type="password" id="password1" name="password1" placeholder="Password" required="true">
+                <input type="password" id="password2" name="password2" placeholder="Password Again" required="true">
                 <button>Sign Up</button>
             </form>
         </div>
         <div class="login">
-            <form>
+            <form method="POST">
                 <label for="chk" aria-hidden="true">Login</label>
-                <input type="email" name="email" placeholder="E-Mail" required="">
-                <input type="password" name="pswd" placeholder="Password" required="">
+                <input type="email" id="email" name="email" placeholder="E-Mail" required="true">
+                <input type="password" id="password" name="password" name="password" placeholder="Password" required="true">
                 <button>Login</button>
             </form>
         </div>
