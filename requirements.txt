@@ -1,0 +1,16 @@
+Flask==3.0.0
+Flask_Login==0.6.2
+Flask_SocketIO==5.3.6
+flask_sqlalchemy==3.1.1
+matplotlib==3.8.0
+nltk==3.8.1
+numpy==1.23.1
+pandas==1.5.3
+Pillow==9.5.0
+Pillow==9.0.1
+Pillow==10.0.1
+scikit_learn==1.2.2
+seaborn==0.13.0
+SQLAlchemy==2.0.21
+Werkzeug==3.0.0
+wordcloud==1.9.2
