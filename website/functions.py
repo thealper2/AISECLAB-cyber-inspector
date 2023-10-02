@@ -242,6 +242,7 @@ def print_wordcloud(dict_top, LABEL, save_path):
     plt.savefig(save_path)
 
 def get_histplot_central_tendency(df, features, label, save_path):
+    df = df[df["label"] == label]
     for feature in features:
         v_dist_1 = df[feature].values
         plt.figure()

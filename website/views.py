@@ -32,23 +32,28 @@ def dashboard():
         elif "1.0" == current_user.queries[i].label:
             total_1 += 1
     
-    save_path = "website/static/reports/"
+    total = total_0 + total_1
+    if total > 0: 
+        save_path = "website/static/reports/"
 
-    label = np.array(["benign", "malicious"])
-    values = np.array([total_0, total_1])
-    colors = ["blue", "red"]
+        label = np.array(["benign", "malicious"])
+        values = np.array([total_0, total_1])
+        colors = ["blue", "red"]
 
-    plt.figure(figsize=(5, 5))
-    plt.bar(label, values, color=colors)
-    plt.title("Total Queries per Category")
-    plt.savefig(save_path + "db_total.png")
-    
-    plt.figure(figsize=(5, 5))
-    plt.pie(values, labels=label)
-    plt.title("Total Queries per Category")
-    plt.savefig(save_path + "db_total2.png")
+        plt.figure(figsize=(5, 5))
+        plt.bar(label, values, color=colors)
+        plt.title("Total Queries per Category")
+        plt.savefig(save_path + "db_total.png")
+        
+        plt.figure(figsize=(5, 5))
+        plt.pie(values, labels=label)
+        plt.title("Total Queries per Category")
+        plt.savefig(save_path + "db_total2.png")
 
-    return render_template("dashboard.html", user=current_user)
+        return render_template("dashboard.html", user=current_user, is_zero=False)
+
+    else:
+        return render_template("dashboard.html", user=current_user, is_zero=True)
 
 @views.route("/upload", methods=["GET", "POST"])
 @login_required
