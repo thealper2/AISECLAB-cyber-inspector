@@ -57,5 +57,16 @@ python3 main.py
 # Fake api'yi çalıştırmak için
 python3 api.py
 ```
+<br/>
 
+# :shield: Modeller
+---
 
+* Problemi çözmek için LogisticRegression, RandomForest, DecisionTree ve XGB modelleri kullanılmıştır. Kullanılam modellere ait veriler aşağıda belirtilmiştir.
+
+| Model | Training Time | Train Accuracy | Test Accuracy | F1-Score | Precision Score | Recall Score |
+| ----- | ------------- | -------------- | ------------- | -------- | --------------- | ------------ |
+| LogisticRegression | 10.83s | 0.9289 | 0.9705 | 0.6730 | 0.5397 | 0.8937 |  
+| RandomForestClassifier | 270.43s | 0.9692 | 0.9906 | 0.8715 | 0.8272 | 0.9207 | 
+| DecisionTreeClassifier | 13.51s | 0.9683 | 0.9907 | 0.8699 | 0.8289 | 0.9151 | 
+| XGBClassifier | 81.23s | 0.9613 | 0.9857 | 0.8163 | 0.7257 | 0.9857 | 
