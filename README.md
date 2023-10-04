@@ -66,7 +66,7 @@ python3 api.py
 
 | Model | Training Time | Train Accuracy | Test Accuracy | F1-Score | Precision Score | Recall Score |
 | ----- | ------------- | -------------- | ------------- | -------- | --------------- | ------------ |
-| LogisticRegression | 10.83s | 0.9289 | 0.9705 | 0.6730 | 0.5397 | 0.8937 |  
-| RandomForestClassifier | 270.43s | 0.9692 | 0.9906 | 0.8715 | 0.8272 | 0.9207 | 
-| DecisionTreeClassifier | 13.51s | 0.9683 | 0.9907 | 0.8699 | 0.8289 | 0.9151 | 
-| XGBClassifier | 81.23s | 0.9613 | 0.9857 | 0.8163 | 0.7257 | 0.9857 | 
+| LogisticRegression | 9.63s | 0.9300 | 0.9296 | 0.9264 | 0.9703 | 0.8864 |  
+| RandomForestClassifier | 300.30s | 0.9693 | 0.9684 | 0.9676 | 0.9925 | 0.9439 | 
+| DecisionTreeClassifier | 16.59s | 0.9693 | 0.9683 | 0.9674 | 0.9928 | 0.9434 | 
+| XGBClassifier | 7.17s | 0.9622 | 0.9618 | 0.9609 | 0.9860 | 0.9369 | 
