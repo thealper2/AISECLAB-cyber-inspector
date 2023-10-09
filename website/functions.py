@@ -43,13 +43,15 @@ def clear_first_char(column):
         return column
 
 def xss_check(input_string):
-    xss_pattern = re.compile(r'(<|>|&lt;|&gt;|script|alert|document\.|onload\=|onerror\=|eval\(|expression\(|prompt\(|confirm\()')
+    input_string = urllib.parse.unquote(input_string)
+    xss_pattern=re.compile(r'(<|>|&lt;|&gt;|script|alert|document\.|onload\=|onerror\=|eval\(|expression\(|prompt\(|confirm\()')
     if xss_pattern.search(input_string.split("/")[-1]):
         return 1
     else:
         return 0
 
 def lfi_check(input_string):
+    input_string = urllib.parse.unquote(input_string)
     lfi_pattern = re.compile(r'(file\:\/\/|(\.\.\/)|(\.\.\\))')
     if "=" in input_string.split("/")[-1]:
         if lfi_pattern.search(input_string.split("/")[-1].split("=", 1)[1]):
@@ -60,8 +62,9 @@ def lfi_check(input_string):
         return 1
     else:
         return 0
-
+    
 def command_injection_check(input_string):
+    input_string = urllib.parse.unquote(input_string)
     cmd_injection_pattern = re.compile(r'(;|\||`|\$\(|\$\{)')
 
     if cmd_injection_pattern.search(input_string):
@@ -70,9 +73,10 @@ def command_injection_check(input_string):
         return 0
 
 def sql_injection_check(input_string):
-    sql_injection_pattern = re.compile(r'(\b(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE|AND|OR|UNION|ALL|EXEC|EXECUTE|DECLARE|CAST)\b)')
+    input_string = urllib.parse.unquote(input_string)
+    sqli_pattern = re.compile(r'(\b(SELECT|INSERT|UPDATE|DELETE|FROM|WHERE|AND|OR|UNION|ALL|EXEC|EXECUTE|DECLARE|CAST)\b)')
 
-    if sql_injection_pattern.search(input_string):
+    if sqli_pattern.search(input_string):
         return 1
     else:
         return 0
@@ -81,30 +85,39 @@ def urllen(url):
     return len(url)
 
 def semicolon_count(url):
+    url = urllib.parse.unquote(url)
     return url.count(";")
 
 def underscore_count(url):
+    url = urllib.parse.unquote(url)
     return url.count("_")
 
 def questionmark_count(url):
+    url = urllib.parse.unquote(url)
     return url.count("?")
 
 def equal_count(url):
+    url = urllib.parse.unquote(url)
     return url.count("=")
 
 def and_count(url):
+    url = urllib.parse.unquote(url)
     return url.count("&")
 
 def or_count(url):
+    url = urllib.parse.unquote(url)
     return url.count("|")
 
 def dotcount(url):
+    url = urllib.parse.unquote(url)
     return url.count(".")
 
 def atcount(url):
+    url = urllib.parse.unquote(url)
     return url.count("@")
 
 def subdircount(url):
+    url = urllib.parse.unquote(url)
     parsed_url = urllib.parse.urlparse(url)
     subdirectory_path = len(parsed_url.path.strip("/").split("/"))
     return subdirectory_path
@@ -184,6 +197,7 @@ def total_letter_path(url):
         return total_letter_in_url(clean_url)
 
 def has_extension(url):
+    url = urllib.parse.unquote(url)
     parsed_url = urllib.parse.urlparse(url)
     query_params = urllib.parse.parse_qs(parsed_url.query)
     path = parsed_url.path
@@ -194,6 +208,7 @@ def has_extension(url):
         return 1
 
 def find_extension(url):
+    url = urllib.parse.unquote(url)
     parsed_url = urllib.parse.urlparse(url)
     query_params = urllib.parse.parse_qs(parsed_url.query)
     path = parsed_url.path
